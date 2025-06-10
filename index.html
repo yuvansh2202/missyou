@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Do You Miss Me?</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(to bottom right, #ffd6eb, #ffb3d9);
+      font-family: 'Pacifico', cursive;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .glitter {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1px);
+      background-size: 15px 15px;
+      animation: glitterMove 30s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes glitterMove {
+      from { background-position: 0 0; }
+      to { background-position: 100px 100px; }
+    }
+
+    .heart-button {
+      width: 300px;
+      height: 270px;
+      background: radial-gradient(circle at 30% 30%, #ff99cc, #ff0066);
+      border: none;
+      cursor: pointer;
+      position: relative;
+      transform: rotate(-45deg);
+      animation: pulse 2s infinite;
+      box-shadow: 0 0 30px #fff, 0 0 60px #ff66a3, 0 0 90px #fff;
+    }
+
+    .heart-button::before,
+    .heart-button::after {
+      content: "";
+      position: absolute;
+      width: 300px;
+      height: 270px;
+      background: radial-gradient(circle at 30% 30%, #ff99cc, #ff0066);
+      border-radius: 50%;
+    }
+
+    .heart-button::before {
+      top: -150px;
+      left: 0;
+    }
+
+    .heart-button::after {
+      left: 150px;
+      top: 0;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1) rotate(-45deg);
+      }
+      50% {
+        transform: scale(1.1) rotate(-45deg);
+      }
+    }
+
+    .heart-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: rotate(45deg) translate(-50%, -50%);
+      color: white;
+      font-family: 'Great Vibes', cursive;
+      font-size: 26px;
+      text-shadow: 2px 2px 8px rgba(255,255,255,0.6), 1px 1px 6px rgba(0,0,0,0.3);
+      z-index: 2;
+      text-align: center;
+      padding: 0 10px;
+    }
+
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="glitter"></div>
+
+  <form action="https://formsubmit.co/yuvanshjain22@gmail.com" method="POST">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="message" value="Someone clicked the heart ❤️">
+    <button type="submit" class="heart-button" id="heart">
+      <div class="heart-text">Baby, my heart aches without you 💘</div>
+    </button>
+  </form>
+
+  <audio id="music" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2023/03/08/audio_9d2fd4964a.mp3?filename=romantic-piano-144189.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    document.getElementById("heart").addEventListener("click", function () {
+      const music = document.getElementById("music");
+      if (music.paused) {
+        music.volume = 0.5;
+        music.play().catch(() => {});
+      }
+    });
+  </script>
+
+</body>
+</html>
